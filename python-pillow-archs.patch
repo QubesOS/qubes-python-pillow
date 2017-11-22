@@ -1,0 +1,34 @@
+diff -rupN python-imaging-Pillow-2f4207c/setup.py python-imaging-Pillow-2f4207c-new/setup.py
+--- python-imaging-Pillow-2f4207c/setup.py	2013-03-18 22:22:00.000000000 +0100
++++ python-imaging-Pillow-2f4207c-new/setup.py	2013-03-19 00:58:58.629486821 +0100
+@@ -138,6 +138,30 @@ class pil_build_ext(build_ext):
+                 elif platform_ in ["i386", "i686", "32bit"]:
+                     _add_directory(library_dirs, "/usr/lib/i386-linux-gnu")
+                     break
++                elif platform_ in ["aarch64", "64bit"]:
++                    _add_directory(library_dirs, "/lib64")
++                    _add_directory(library_dirs, "/usr/lib64")
++                    _add_directory(library_dirs, "/usr/lib/aarch64-linux-gnu")
++                    break
++                elif platform_ in ["arm", "armv7l", "32bit"]:
++                    _add_directory(library_dirs, "/usr/lib/arm-linux-gnueabi")
++                    break
++                elif platform_ in ["ppc64", "64bit"]:
++                    _add_directory(library_dirs, "/lib64")
++                    _add_directory(library_dirs, "/usr/lib64")
++                    _add_directory(library_dirs, "/usr/lib/ppc64-linux-gnu")
++                    break
++                elif platform_ in ["ppc", "32bit"]:
++                    _add_directory(library_dirs, "/usr/lib/ppc-linux-gnu")
++                    break
++                elif platform_ in ["s390x", "64bit"]:
++                    _add_directory(library_dirs, "/lib64")
++                    _add_directory(library_dirs, "/usr/lib64")
++                    _add_directory(library_dirs, "/usr/lib/s390x-linux-gnu")
++                    break
++                elif platform_ in ["s390", "32bit"]:
++                    _add_directory(library_dirs, "/usr/lib/s390-linux-gnu")
++                    break
+             else:
+                 raise ValueError("Unable to identify Linux platform: `%s`" % platform_)
+ 

@@ -1,0 +1,37 @@
+Index: python-imaging-Pillow-d1c6db8/libImaging/Antialias.c
+===================================================================
+--- python-imaging-Pillow-d1c6db8.orig/libImaging/Antialias.c
++++ python-imaging-Pillow-d1c6db8/libImaging/Antialias.c
+@@ -216,6 +216,7 @@ ImagingStretch(Imaging imOut, Imaging im
+                     break;
+                 default:
+                     ImagingSectionLeave(&cookie);
++                    free(k);
+                     return (Imaging) ImagingError_ModeError();
+                 }
+         }
+@@ -295,6 +296,7 @@ ImagingStretch(Imaging imOut, Imaging im
+                     break;
+                 default:
+                     ImagingSectionLeave(&cookie);
++                    free(k);
+                     return (Imaging) ImagingError_ModeError();
+                 }
+         }
+Index: python-imaging-Pillow-d1c6db8/libImaging/UnsharpMask.c
+===================================================================
+--- python-imaging-Pillow-d1c6db8.orig/libImaging/UnsharpMask.c
++++ python-imaging-Pillow-d1c6db8/libImaging/UnsharpMask.c
+@@ -141,8 +141,10 @@ gblur(Imaging im, Imaging imOut, float f
+     /* don't bother about alpha/padding */
+     buffer = calloc((size_t) (im->xsize * im->ysize * channels),
+ 		    sizeof(float));
+-    if (buffer == NULL)
+-	return ImagingError_MemoryError();
++    if (buffer == NULL) {
++        free(maskData);
++        return ImagingError_MemoryError();
++    }
+ 
+     /* be nice to other threads while you go off to lala land */
+     ImagingSectionEnter(&cookie);
