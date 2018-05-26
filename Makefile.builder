@@ -4,3 +4,5 @@ ifeq ($(PACKAGE_SET),vm)
 			python-pillow.spec
 	endif
 endif
+
+NO_ARCHIVE := 1

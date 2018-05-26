@@ -1,7 +1,3 @@
-%if 0%{?qubes_builder}
-%define _sourcedir %(pwd)
-%endif
-
 %global py2_incdir %{_includedir}/python%{python_version}
 %global py3_incdir %{_includedir}/python%{python3_version}
 
