@@ -1,7 +1,7 @@
 %global py2_incdir %{_includedir}/python%{python_version}
 %global py3_incdir %{_includedir}/python%{python3_version}
 
-%global name3 python34-pillow
+%global name3 python%{python3_pkgversion}-pillow
 
 # RHEL-7 does have python 3.4
 %if 0%{?rhel} >= 7
@@ -57,18 +57,18 @@ BuildRequires:  PyQt4
 BuildRequires:  numpy
 
 %if %{with_python3}
-BuildRequires:  python34-devel
-BuildRequires:  python34-setuptools
-BuildRequires:  python34-tkinter
-#BuildRequires: python34-PyQt4
-BuildRequires:  python34-numpy
+BuildRequires:  python%{python3_pkgversion}-devel
+BuildRequires:  python%{python3_pkgversion}-setuptools
+BuildRequires:  python%{python3_pkgversion}-tkinter
+#BuildRequires: python%{python3_pkgversion}-PyQt4
+BuildRequires:  python%{python3_pkgversion}-numpy
 %endif
 
 Provides:       python-imaging = %{version}-%{release}
 Obsoletes:      python-imaging <= 1.1.7-12
 
 %if %{with_python3}
-Provides:       python34-imaging = %{version}-%{release}
+Provides:       python%{python3_pkgversion}-imaging = %{version}-%{release}
 %endif
 
 %filter_provides_in %{python_sitearch}
@@ -152,7 +152,7 @@ Summary:        Python 3 image processing library
 Summary:        Development files for %{name3}
 Group:          Development/Libraries
 Requires:       %{name3}%{?_isa} = %{version}-%{release}
-Requires:       python34-devel, libjpeg-devel, zlib-devel
+Requires:       python%{python3_pkgversion}-devel, libjpeg-devel, zlib-devel
 
 %description -n %{name3}-devel
 Development files for %{name3}.
@@ -191,7 +191,7 @@ Summary:        PIL image wrapper for Qt
 Group:          System Environment/Libraries
 Obsoletes:      %{name3} <= 2.0.0-5.git93a488e8
 Requires:       %{name3}%{?_isa} = %{version}-%{release}
-Requires:       python34-PyQt4
+Requires:       python%{python3_pkgversion}-PyQt4
 
 %description -n %{name3}-qt
 PIL image wrapper for Qt.
