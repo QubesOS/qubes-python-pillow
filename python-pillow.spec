@@ -21,7 +21,7 @@
 
 Name:           python-pillow
 Version:        2.0.0
-Release:        20%{?snap}%{?dist}
+Release:        21%{?snap}%{?dist}
 Summary:        Python image processing library
 
 # License: see http://www.pythonware.com/products/pil/license.htm
